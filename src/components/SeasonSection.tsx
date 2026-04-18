@@ -1,6 +1,8 @@
 import { appContent } from '../data/content';
 
 function SeasonSection() {
+  const summaryCards = appContent.season?.summaryCards ?? [];
+
   return (
     <section
       style={{
@@ -34,6 +36,49 @@ function SeasonSection() {
       >
         {appContent.season?.intro ?? 'Раздел сезона будет заполнен на следующем этапе.'}
       </p>
+
+      {summaryCards.length > 0 ? (
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gap: 16,
+          }}
+        >
+          {summaryCards.map((card) => (
+            <article
+              key={card.title}
+              style={{
+                padding: 20,
+                borderRadius: 20,
+                background: '#f8faf7',
+                border: '1px solid rgba(17, 24, 39, 0.06)',
+              }}
+            >
+              <h3
+                style={{
+                  marginTop: 0,
+                  marginBottom: 12,
+                  fontSize: 18,
+                  color: '#111827',
+                }}
+              >
+                {card.title}
+              </h3>
+              <p
+                style={{
+                  margin: 0,
+                  fontSize: 16,
+                  lineHeight: 1.7,
+                  color: '#4b5563',
+                }}
+              >
+                {card.text}
+              </p>
+            </article>
+          ))}
+        </div>
+      ) : null}
     </section>
   );
 }
