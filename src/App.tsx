@@ -1,3 +1,4 @@
+import SeasonSection from './components/SeasonSection';
 import { appContent } from './data/content';
 
 function App() {
@@ -74,6 +75,8 @@ function App() {
           {appContent.hero.intro}
         </p>
       </section>
+
+      <SeasonSection />
     </main>
   );
 }
