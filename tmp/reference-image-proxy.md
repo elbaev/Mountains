@@ -1,1 +1,0 @@
-[Открыть техническую копию исходного макета](https://images.weserv.nl/?url=https%3A%2F%2Fi.pinimg.com%2F1200x%2F75%2Faf%2F22%2F75af225f4527677306ea9b434b5c3f77.jpg&output=jpg)
