@@ -1,0 +1,65 @@
+name: Publish ALÆNIA static site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".deploy/**"
+      - ".github/workflows/publish-alaenia.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: alaenia-publish
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Restore and verify static site
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p public
+          cat .deploy/site.part-* | base64 --decode > /tmp/alaenia-site.tar.gz
+          echo "1f27a6946f7c7b9cd62212dbb2b903d3e718edd6d1a8d7188df7a870b39cee8d  /tmp/alaenia-site.tar.gz" | sha256sum --check
+          tar -xzf /tmp/alaenia-site.tar.gz -C public
+          echo "376e2634d224ad3923ef2d34630b86013febb10f8bd7d566af0e59d3a241ca0f  public/index.html" | sha256sum --check
+          echo "e5b1d695176df714d6afcb81701f0eb1b769d819db08a3c8d2e100ad5cc0e4ae  public/styles.css" | sha256sum --check
+          echo "f3ddc6a66b412f41f2df3ff40be55ac9f96c3e9702eb17aab02e0aac3b6ac824  public/script.js" | sha256sum --check
+          touch public/.nojekyll
+
+      - name: Publish verified files to gh-pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd public
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b gh-pages
+          git add --all
+          git commit -m "Deploy ALÆNIA static site"
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push --force origin gh-pages
+
+      - name: Attempt to enable GitHub Pages from gh-pages
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh api "repos/${GITHUB_REPOSITORY}/pages" >/dev/null 2>&1 || \
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/pages" \
+            -f "source[branch]=gh-pages" \
+            -f "source[path]=/"
