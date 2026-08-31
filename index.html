@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#173d32">
+  <meta name="description" content="Персональный гид по Владикавказу и горной Осетии: сезон, сборы, проживание, маршрут и чек-лист.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>ALÆNIA — Владикавказ и горная Осетия</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2200&q=88">
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="is-locked">
+  <a class="skip-link" href="#main-content">Перейти к содержанию</a>
+
+  <section class="auth-screen" id="auth-screen" aria-labelledby="auth-title">
+    <div class="auth-screen__visual" aria-hidden="true">
+      <div class="auth-screen__visual-shade"></div>
+      <p class="auth-screen__coordinates">42°59′ N · 44°40′ E</p>
+      <div class="auth-screen__caption">
+        <span>Северная Осетия</span>
+        <strong>Высота меняет перспективу</strong>
+      </div>
+    </div>
+
+    <div class="auth-screen__panel">
+      <div class="auth-card">
+        <a class="brand brand--dark" href="#" aria-label="ALÆNIA">
+          <span class="brand__symbol" aria-hidden="true">
+            <svg viewBox="0 0 44 44"><path d="M4 33 15.4 11l6.3 12.2L28.1 7 40 33H4Z"></path><path d="m12.4 33 9.3-17.4L31 33"></path></svg>
+          </span>
+          <span>ALÆNIA</span>
+        </a>
+
+        <div class="auth-card__copy">
+          <p class="eyebrow">Закрытый путеводитель</p>
+          <h1 id="auth-title">Войти<br><em>в маршрут</em></h1>
+          <p>Введите гостевые данные. Регистрация и аккаунт OpenAI не требуются.</p>
+        </div>
+
+        <form class="auth-form" id="auth-form" novalidate>
+          <div class="field">
+            <label for="auth-login">Логин</label>
+            <input id="auth-login" name="login" type="text" autocomplete="username" spellcheck="false" required autofocus>
+          </div>
+          <div class="field">
+            <label for="auth-password">Пароль</label>
+            <div class="password-field">
+              <input id="auth-password" name="password" type="password" autocomplete="current-password" required>
+              <button class="icon-button password-toggle" type="button" aria-label="Показать пароль" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.7 12s3.4-5.5 9.3-5.5 9.3 5.5 9.3 5.5-3.4 5.5-9.3 5.5S2.7 12 2.7 12Z"></path><circle cx="12" cy="12" r="2.6"></circle></svg>
+              </button>
+            </div>
+          </div>
+          <label class="check-control check-control--compact">
+            <input id="remember-access" type="checkbox">
+            <span class="check-control__box" aria-hidden="true"></span>
+            <span>Запомнить на этом устройстве</span>
+          </label>
+          <p class="form-message" id="auth-message" role="alert" aria-live="polite"></p>
+          <button class="button button--primary button--full" type="submit">
+            <span>Открыть путеводитель</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg>
+          </button>
+        </form>
+        <p class="auth-card__note">Гостевой доступ сохраняется только в вашем браузере.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="site-shell" id="site-shell" hidden>
+    <header class="site-header" id="site-header">
+      <div class="site-header__inner container">
+        <a class="brand" href="#home" aria-label="ALÆNIA — к началу страницы">
+          <span class="brand__symbol" aria-hidden="true">
+            <svg viewBox="0 0 44 44"><path d="M4 33 15.4 11l6.3 12.2L28.1 7 40 33H4Z"></path><path d="m12.4 33 9.3-17.4L31 33"></path></svg>
+          </span>
+          <span>ALÆNIA</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Основная навигация">
+          <a href="#season">Сезон</a>
+          <a href="#packing">Сборы</a>
+          <a href="#stay">Проживание</a>
+          <a href="#route">Маршрут</a>
+          <a href="#tips">Советы</a>
+          <a href="#checklist">Чек-лист</a>
+        </nav>
+
+        <div class="site-header__actions">
+          <button class="text-button desktop-only" type="button" data-open-dialog>Связаться</button>
+          <button class="icon-button logout-button" type="button" aria-label="Выйти" title="Выйти">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5H5.7A1.7 1.7 0 0 0 4 6.7v10.6A1.7 1.7 0 0 0 5.7 19H10"></path><path d="M14 8.5 17.5 12 14 15.5M8.5 12h9"></path></svg>
+          </button>
+          <button class="menu-button" id="menu-button" type="button" aria-controls="mobile-nav" aria-expanded="false" aria-label="Открыть меню"><span></span><span></span></button>
+        </div>
+      </div>
+
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden>
+        <div class="mobile-nav__inner container">
+          <a href="#season">Сезон</a><a href="#packing">Сборы</a><a href="#stay">Проживание</a><a href="#route">Маршрут</a><a href="#tips">Советы</a><a href="#checklist">Чек-лист</a><a href="#planner">Собрать поездку</a>
+          <button class="button button--primary" type="button" data-open-dialog>Связаться</button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero__media" aria-hidden="true"></div>
+        <div class="hero__shade" aria-hidden="true"></div>
+        <div class="container hero__inner">
+          <div class="hero__copy" data-reveal>
+            <p class="eyebrow eyebrow--light">Персональный гид · конец апреля — начало мая</p>
+            <h1 id="hero-title">Владикавказ<br><em>и горная Осетия</em></h1>
+            <p class="hero__lead">Спокойная шпаргалка о том, как увидеть город и горы без суеты: что взять, где остановиться и как построить маршрут с запасом на погоду.</p>
+            <div class="hero__actions">
+              <a class="button button--light" href="#season"><span>Открыть шпаргалку</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg></a>
+              <a class="button button--ghost-light" href="#planner">Собрать поездку</a>
+            </div>
+          </div>
+
+          <aside class="route-preview" data-reveal data-reveal-delay="160" aria-label="Краткая схема путешествия">
+            <div class="route-preview__head"><span>Сценарий</span><strong>03 дня</strong></div>
+            <ol>
+              <li><span>01</span><div><strong>Владикавказ</strong><small>ритм города</small></div></li>
+              <li><span>02</span><div><strong>Куртатинское ущелье</strong><small>главный горный день</small></div></li>
+              <li><span>03</span><div><strong>Гибкое продолжение</strong><small>по погоде и силам</small></div></li>
+            </ol>
+            <a href="#route">Открыть маршрут <span>↗</span></a>
+          </aside>
+        </div>
+        <div class="container hero__footer" data-reveal data-reveal-delay="240">
+          <span>01 · Сезон</span><span>02 · Сборы</span><span>03 · Проживание</span><span>04 · Маршрут</span>
+        </div>
+      </section>
+
+      <section class="section section--paper" id="season" aria-labelledby="season-title">
+        <div class="container">
+          <div class="section-heading section-heading--split" data-reveal>
+            <div><p class="eyebrow">01 · Погода и сезон</p><h2 id="season-title">Весна здесь<br><em>меняет высоту</em></h2></div>
+            <p>В конце апреля и начале мая город уже может быть теплым, но один поворот в ущелье быстро возвращает ветер, сырость и снег на верхних точках. Планировать нужно не «погоду в регионе», а условия по высоте.</p>
+          </div>
+
+          <div class="season-grid">
+            <article class="season-card season-card--city" data-reveal>
+              <div class="season-card__number">01</div><span class="season-card__label">В городе</span><h3>Мягче и теплее</h3><p>Днем часто достаточно легкого слоя, но вечером полезна куртка. Для прогулок важнее удобная обувь, чем «горная» экипировка.</p><div class="season-card__meta"><span>ориентир</span><strong>слои, которые легко снять</strong></div>
+            </article>
+            <article class="season-card season-card--mountain" data-reveal data-reveal-delay="100">
+              <div class="season-card__number">02</div><span class="season-card__label">В горах</span><h3>Резче и честнее</h3><p>Температура падает с высотой, ветер усиливает холод, а солнце сменяется облаком быстрее, чем кажется из города.</p><div class="season-card__meta"><span>ориентир</span><strong>теплый слой + защита от ветра</strong></div>
+            </article>
+            <article class="season-card season-card--result" data-reveal data-reveal-delay="200">
+              <div class="season-card__number">03</div><span class="season-card__label">Главный вывод</span><h3>Не угадывать — собирать</h3><p>Многослойность дает свободу: вы не зависите от одного прогноза и можете менять темп, не теряя комфорт.</p><div class="season-card__meta"><span>проверка</span><strong>прогноз вечером и утром</strong></div>
+            </article>
+          </div>
+
+          <div class="editorial-note" data-reveal>
+            <span>Практический смысл</span><p>Горный день не должен быть жестко привязан к конкретной дате. В программе нужен один переносимый блок, который можно поставить на самое ясное окно.</p><a href="#route">Посмотреть гибкий маршрут →</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--dark" id="packing" aria-labelledby="packing-title">
+        <div class="container">
+          <div class="section-heading section-heading--light" data-reveal><p class="eyebrow eyebrow--light">02 · Что взять</p><h2 id="packing-title">Собрать не чемодан,<br><em>а уверенность</em></h2><p>Четыре коротких набора закрывают город, горы, дорогу и обязательные мелочи.</p></div>
+
+          <div class="packing-layout" data-reveal>
+            <div class="packing-tabs" role="tablist" aria-label="Списки вещей">
+              <button id="tab-city" role="tab" aria-selected="true" aria-controls="panel-city" data-tab="city"><span>01</span>Для города</button>
+              <button id="tab-mountain" role="tab" aria-selected="false" aria-controls="panel-mountain" data-tab="mountain" tabindex="-1"><span>02</span>Для гор</button>
+              <button id="tab-car" role="tab" aria-selected="false" aria-controls="panel-car" data-tab="car" tabindex="-1"><span>03</span>В машину</button>
+              <button id="tab-must" role="tab" aria-selected="false" aria-controls="panel-must" data-tab="must" tabindex="-1"><span>04</span>Обязательно</button>
+            </div>
+
+            <div class="packing-panels">
+              <article class="packing-panel" id="panel-city" role="tabpanel" aria-labelledby="tab-city" data-panel="city">
+                <div class="packing-panel__image packing-panel__image--city" aria-hidden="true"></div>
+                <div class="packing-panel__copy"><p class="eyebrow eyebrow--light">Городской слой</p><h3>Легко идти,<br>легко переодеться</h3><ul><li>удобные кроссовки или ботинки</li><li>футболка и средний утепляющий слой</li><li>легкая куртка на вечер</li><li>небольшая сумка или рюкзак</li></ul><details><summary>Зачем именно так?<span>+</span></summary><p>Во Владикавказе важнее комфортная ходьба и возможность быстро снять лишнее. Слишком тяжелая обувь и одна теплая куртка без слоев скорее мешают.</p></details></div>
+              </article>
+              <article class="packing-panel" id="panel-mountain" role="tabpanel" aria-labelledby="tab-mountain" data-panel="mountain" hidden>
+                <div class="packing-panel__image packing-panel__image--mountain" aria-hidden="true"></div>
+                <div class="packing-panel__copy"><p class="eyebrow eyebrow--light">Горный слой</p><h3>Тепло без<br>лишнего объема</h3><ul><li>термобелье или тонкий базовый слой</li><li>флис, шерсть или легкий пух</li><li>ветро- и влагозащитная куртка</li><li>шапка, перчатки и сухие носки</li></ul><details><summary>Зачем именно так?<span>+</span></summary><p>Высота и ветер меняют ощущение температуры сильнее цифр в прогнозе. Несколько тонких слоев регулируются точнее одной массивной вещи.</p></details></div>
+              </article>
+              <article class="packing-panel" id="panel-car" role="tabpanel" aria-labelledby="tab-car" data-panel="car" hidden>
+                <div class="packing-panel__image packing-panel__image--car" aria-hidden="true"></div>
+                <div class="packing-panel__copy"><p class="eyebrow eyebrow--light">Дорожный запас</p><h3>Комфорт между<br>остановками</h3><ul><li>вода, термос и небольшой перекус</li><li>плед или запасная теплая вещь</li><li>влажные и бумажные салфетки</li><li>пакет для мокрой одежды</li></ul><details><summary>Зачем именно так?<span>+</span></summary><p>Кафе и связь не всегда совпадают с моментом, когда они нужны. Маленький запас делает маршрут независимым и позволяет останавливаться ради вида, а не бытовой необходимости.</p></details></div>
+              </article>
+              <article class="packing-panel" id="panel-must" role="tabpanel" aria-labelledby="tab-must" data-panel="must" hidden>
+                <div class="packing-panel__image packing-panel__image--must" aria-hidden="true"></div>
+                <div class="packing-panel__copy"><p class="eyebrow eyebrow--light">Без компромиссов</p><h3>То, что нельзя<br>оставлять в отеле</h3><ul><li>документы и личные лекарства</li><li>заряженный телефон и пауэрбанк</li><li>офлайн-карта и сохраненные адреса</li><li>солнцезащитные очки и крем</li></ul><details><summary>Зачем именно так?<span>+</span></summary><p>Даже короткий выезд становится заметно спокойнее, когда навигация, связь и личные потребности не зависят от случайности.</p></details></div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--sand" id="stay" aria-labelledby="stay-title">
+        <div class="container">
+          <div class="section-heading section-heading--split" data-reveal><div><p class="eyebrow">03 · Где остановиться</p><h2 id="stay-title">Выбрать не отель,<br><em>а ритм поездки</em></h2></div><p>Сначала определите, сколько переездов действительно хочется. Конкретное место проживания имеет смысл выбирать уже после этого решения.</p></div>
+          <div class="stay-grid">
+            <article class="stay-card" data-reveal><div class="stay-card__image stay-card__image--city"><span>Городской комфорт</span></div><div class="stay-card__body"><p class="stay-card__kicker">Сценарий 01</p><h3>Владикавказ</h3><p>Одна база на всю поездку: рестораны, вечерние прогулки и отсутствие ежедневных сборов. Горные маршруты начинаются и заканчиваются в городе.</p><ul><li>максимум предсказуемости</li><li>удобно на 2–3 дня</li><li>длиннее дорога в горы</li></ul></div></article>
+            <article class="stay-card stay-card--featured" data-reveal data-reveal-delay="100"><div class="stay-card__image stay-card__image--mountain"><span>Тихий горный формат</span></div><div class="stay-card__body"><p class="stay-card__kicker">Сценарий 02</p><h3>Ночь в ущелье</h3><p>Закат, тишина и раннее утро без обратной дороги. Взамен нужно принять более простой быт и заранее проверить питание, отопление и подъезд.</p><ul><li>самое сильное впечатление</li><li>лучше при 4–5 днях</li><li>нужна уверенность в погоде</li></ul></div></article>
+            <article class="stay-card" data-reveal data-reveal-delay="200"><div class="stay-card__image stay-card__image--mix"><span>Лучший баланс</span></div><div class="stay-card__body"><p class="stay-card__kicker">Сценарий 03</p><h3>Комбинированно</h3><p>Основные ночи в городе и одна — на маршруте. Такой формат сохраняет удобство и добавляет опыт горной тишины без постоянной смены базы.</p><ul><li>выразительная смена атмосферы</li><li>разумный объем сборов</li><li>оптимально на 4–5 дней</li></ul></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--paper route-section" id="route" aria-labelledby="route-title">
+        <div class="container">
+          <div class="section-heading route-heading" data-reveal><div><p class="eyebrow">04 · План поездки</p><h2 id="route-title">Маршрут,<br><em>который дышит</em></h2></div><p>Выберите длительность и решите, нужна ли ночь в горах. План перестроится, сохраняя разумный темп и запас на погоду.</p></div>
+          <div class="route-controls" data-reveal>
+            <div class="segmented-control" role="group" aria-label="Длительность поездки"><button type="button" data-days="2" aria-pressed="false">2 дня</button><button type="button" data-days="3" class="is-active" aria-pressed="true">3 дня</button><button type="button" data-days="4" aria-pressed="false">4 дня</button><button type="button" data-days="5" aria-pressed="false">5 дней</button></div>
+            <label class="switch-control"><input id="mountain-stay-toggle" type="checkbox"><span class="switch-control__track" aria-hidden="true"><span></span></span><span>С ночевкой в горах</span></label>
+          </div>
+          <div class="route-board" data-reveal>
+            <div class="route-board__summary"><p class="eyebrow">Рекомендованный сценарий</p><h3 id="route-summary-title"></h3><p id="route-summary-text"></p><div class="route-board__why"><span>Почему это работает</span><p id="route-why-text"></p></div></div>
+            <ol class="route-days" id="route-days" aria-live="polite"></ol>
+          </div>
+          <div class="route-map" aria-hidden="true" data-reveal><svg viewBox="0 0 1200 220" preserveAspectRatio="none"><path class="route-map__terrain" d="M0 188 78 150l58 13 94-91 67 65 72-34 75 52 82-115 77 87 81-35 62 51 96-78 61 34 68-69 93 97 80-34 96 93H0Z"></path><path class="route-map__path" d="M58 156C176 64 258 186 378 106S596 42 682 130s188 32 262-34 129-6 198 43"></path><circle cx="58" cy="156" r="8"></circle><circle cx="378" cy="106" r="8"></circle><circle cx="682" cy="130" r="8"></circle><circle cx="944" cy="96" r="8"></circle><circle cx="1142" cy="139" r="8"></circle></svg><div class="route-map__labels"><span>Владикавказ</span><span>Фиагдон</span><span>Даргавс</span><span>Кармадон</span><span>Возвращение</span></div></div>
+        </div>
+      </section>
+
+      <section class="section section--cream" id="tips" aria-labelledby="tips-title">
+        <div class="container tips-layout">
+          <div class="tips-intro" data-reveal><p class="eyebrow">05 · Важно знать</p><h2 id="tips-title">Мелочи,<br><em>которые держат день</em></h2><p>Хороший маршрут складывается не только из красивых точек. Время выезда, еда, связь и запас сил иногда влияют на впечатление сильнее еще одной остановки.</p><button class="button button--outline" type="button" data-open-dialog>Обсудить поездку</button></div>
+          <div class="accordion" data-reveal data-reveal-delay="100">
+            <details open><summary><span>01</span><strong>Выезды и ритм дня</strong><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5 12 15l6-5.5"></path></svg></summary><div class="accordion__body"><p>Главный горный день лучше начинать раньше, оставляя световой запас. Не фиксируйте точное количество остановок как обязательство: маршрут должен сокращаться без ощущения провала.</p><ul><li>одна главная цель дня</li><li>два факультативных пункта</li><li>возвращение без спешки</li></ul></div></details>
+            <details><summary><span>02</span><strong>Еда и остановки</strong><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5 12 15l6-5.5"></path></svg></summary><div class="accordion__body"><p>В горах не стоит рассчитывать, что кафе окажется открыто именно тогда, когда понадобится. Завтрак до выезда, вода и небольшой перекус делают день независимее.</p><ul><li>завтрак заранее</li><li>термос и вода</li><li>ужин не ставить слишком поздно</li></ul></div></details>
+            <details><summary><span>03</span><strong>Одежда и запасной план</strong><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5 12 15l6-5.5"></path></svg></summary><div class="accordion__body"><p>Если верхняя точка закрыта облаками или дорога стала неприятной, это не повод рисковать. Нужен заранее выбранный низкий маршрут или спокойный городской день.</p><ul><li>смотреть высотный прогноз</li><li>иметь вариант B</li><li>не спорить с погодой</li></ul></div></details>
+            <details><summary><span>04</span><strong>Связь, деньги и навигация</strong><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5 12 15l6-5.5"></path></svg></summary><div class="accordion__body"><p>Сохраните адреса и карту офлайн, зарядите телефон и возьмите немного наличных. Это способ не тратить внимание на бытовые сбои.</p><ul><li>офлайн-карты</li><li>наличные мелкими купюрами</li><li>пауэрбанк в тепле</li></ul></div></details>
+            <details><summary><span>05</span><strong>Самочувствие</strong><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9.5 12 15l6-5.5"></path></svg></summary><div class="accordion__body"><p>Перепады высоты, длинная дорога и непривычный темп могут утомить. Паузы, вода и отказ от лишнего пункта — нормальная часть хорошей поездки.</p><ul><li>не экономить на паузах</li><li>говорить о дискомфорте сразу</li><li>не планировать «на пределе»</li></ul></div></details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section--forest" id="checklist" aria-labelledby="checklist-title">
+        <div class="container checklist-layout">
+          <div class="checklist-intro" data-reveal><p class="eyebrow eyebrow--light">06 · Перед выездом</p><h2 id="checklist-title">Проверить<br><em>и отпустить</em></h2><p>Отметьте готовое. Список сохранится в этом браузере и будет ждать вас утром перед горным днем.</p><div class="progress-orbit" aria-label="Прогресс чек-листа"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="progress-orbit__track" cx="60" cy="60" r="52"></circle><circle class="progress-orbit__value" id="progress-ring" cx="60" cy="60" r="52"></circle></svg><div><strong id="progress-value">0%</strong><span>готово</span></div></div></div>
+          <div class="checklist-card" data-reveal data-reveal-delay="120"><div class="checklist-card__head"><div><span>Горный день</span><strong id="checklist-date">Сегодня</strong></div><button class="text-button text-button--light" id="reset-checklist" type="button">Сбросить</button></div><div class="checklist-items" id="checklist-items">
+            <label class="check-control"><input type="checkbox" data-check="weather"><span class="check-control__box" aria-hidden="true"></span><span>Проверен прогноз по высоте</span></label>
+            <label class="check-control"><input type="checkbox" data-check="layers"><span class="check-control__box" aria-hidden="true"></span><span>Одежда собрана по слоям</span></label>
+            <label class="check-control"><input type="checkbox" data-check="shoes"><span class="check-control__box" aria-hidden="true"></span><span>Удобная обувь готова</span></label>
+            <label class="check-control"><input type="checkbox" data-check="water"><span class="check-control__box" aria-hidden="true"></span><span>Вода и перекус в машине</span></label>
+            <label class="check-control"><input type="checkbox" data-check="phone"><span class="check-control__box" aria-hidden="true"></span><span>Телефон полностью заряжен</span></label>
+            <label class="check-control"><input type="checkbox" data-check="powerbank"><span class="check-control__box" aria-hidden="true"></span><span>Пауэрбанк и кабель взяты</span></label>
+            <label class="check-control"><input type="checkbox" data-check="documents"><span class="check-control__box" aria-hidden="true"></span><span>Документы и наличные на месте</span></label>
+            <label class="check-control"><input type="checkbox" data-check="medicine"><span class="check-control__box" aria-hidden="true"></span><span>Личные лекарства с собой</span></label>
+            <label class="check-control"><input type="checkbox" data-check="booking"><span class="check-control__box" aria-hidden="true"></span><span>Адреса и брони сохранены офлайн</span></label>
+            <label class="check-control"><input type="checkbox" data-check="departure"><span class="check-control__box" aria-hidden="true"></span><span>Время выезда согласовано</span></label>
+          </div><div class="checklist-card__note"><span>Одно напоминание</span><p>Определите главную цель дня и оставьте место для погоды, пауз и неожиданно красивого вида.</p></div></div>
+        </div>
+      </section>
+
+      <section class="section section--paper" id="planner" aria-labelledby="planner-title">
+        <div class="container planner-shell" data-reveal>
+          <div class="planner-copy"><p class="eyebrow">Быстрый режим</p><h2 id="planner-title">Собрать поездку<br><em>за одну минуту</em></h2><p>Три решения дадут базовый сценарий. После результата можно вернуться к подробному маршруту и списку вещей.</p></div>
+          <form class="planner-form" id="planner-form">
+            <fieldset><legend><span>01</span>Сколько дней?</legend><div class="choice-row"><label><input type="radio" name="days" value="2"><span>2</span></label><label><input type="radio" name="days" value="3" checked><span>3</span></label><label><input type="radio" name="days" value="4"><span>4</span></label><label><input type="radio" name="days" value="5"><span>5</span></label></div></fieldset>
+            <fieldset><legend><span>02</span>Где удобнее жить?</legend><div class="choice-row choice-row--wide"><label><input type="radio" name="base" value="city" checked><span>В городе</span></label><label><input type="radio" name="base" value="mix"><span>Комбинированно</span></label></div></fieldset>
+            <fieldset><legend><span>03</span>Нужна ночь в горах?</legend><div class="choice-row choice-row--wide"><label><input type="radio" name="night" value="no" checked><span>Нет</span></label><label><input type="radio" name="night" value="yes"><span>Да</span></label></div></fieldset>
+            <button class="button button--primary" type="submit">Показать сценарий</button>
+          </form>
+          <div class="planner-result" id="planner-result" hidden aria-live="polite"><button class="icon-button planner-result__close" type="button" aria-label="Закрыть результат"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button><p class="eyebrow">Ваш базовый сценарий</p><h3 id="planner-result-title"></h3><p id="planner-result-text"></p><div class="planner-result__actions"><a class="button button--primary" href="#route">Подробный маршрут</a><a class="button button--outline" href="#packing">Перейти к вещам</a></div></div>
+        </div>
+      </section>
+
+      <section class="contact-strip" aria-labelledby="contact-strip-title"><div class="contact-strip__image" aria-hidden="true"></div><div class="contact-strip__shade" aria-hidden="true"></div><div class="container contact-strip__content" data-reveal><p class="eyebrow eyebrow--light">Маршрут должен подходить именно вам</p><h2 id="contact-strip-title">Остался вопрос<br><em>по вашей поездке?</em></h2><button class="button button--light" type="button" data-open-dialog><span>Отправить запрос</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"></path></svg></button></div></section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container site-footer__top"><a class="brand brand--dark" href="#home"><span class="brand__symbol" aria-hidden="true"><svg viewBox="0 0 44 44"><path d="M4 33 15.4 11l6.3 12.2L28.1 7 40 33H4Z"></path><path d="m12.4 33 9.3-17.4L31 33"></path></svg></span><span>ALÆNIA</span></a><p>Персональная шпаргалка по комфортной поездке во Владикавказ и горную Осетию.</p><button class="button button--outline" type="button" data-open-dialog>Связаться</button></div>
+      <div class="container site-footer__bottom"><span>© <span id="current-year"></span> ALÆNIA GUIDE</span><span>Фото: Unsplash · Шрифты: Manrope, Cormorant Garamond</span><a href="#home">Наверх ↑</a></div>
+    </footer>
+    <button class="back-to-top" id="back-to-top" type="button" aria-label="Наверх"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5M6.5 10.5 12 5l5.5 5.5"></path></svg></button>
+  </div>
+
+  <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
+    <div class="contact-dialog__art" aria-hidden="true"><span>42°59′ N</span><svg viewBox="0 0 400 210" preserveAspectRatio="none"><path d="M0 189 69 97l38 41 72-107 65 99 49-63 107 122H0Z"></path><path d="M30 184c82-84 128 22 197-60s100-11 143 24"></path></svg></div>
+    <div class="contact-dialog__content">
+      <button class="icon-button contact-dialog__close" type="button" data-close-dialog aria-label="Закрыть окно"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg></button>
+      <p class="eyebrow">Персональный запрос</p><h2 id="dialog-title">Расскажите о поездке</h2><p id="dialog-description">Ответ придет на указанный вами адрес. Поля со звездочкой обязательны.</p>
+      <form class="contact-form" id="contact-form" action="https://formsubmit.co/ajax/arturakk2015@gmail.com" method="post">
+        <input type="hidden" name="_subject" value="Новый запрос с сайта ALÆNIA"><input type="hidden" name="_template" value="table"><input type="hidden" name="_captcha" value="false"><input class="honeypot" type="text" name="_honey" tabindex="-1" autocomplete="off">
+        <div class="form-grid">
+          <div class="field"><label for="contact-name">Имя *</label><input id="contact-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="contact-email">Email *</label><input id="contact-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="contact-phone">Телефон</label><input id="contact-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"></div>
+          <div class="field"><label for="contact-format">Формат поездки</label><select id="contact-format" name="trip_format"><option value="">Пока не определен</option><option>2–3 дня</option><option>4–5 дней</option><option>Только город</option><option>Город и горы</option></select></div>
+          <div class="field field--full"><label for="contact-message">Что важно учесть? *</label><textarea id="contact-message" name="message" rows="5" required placeholder="Даты, количество гостей, пожелания к темпу и проживанию"></textarea></div>
+        </div>
+        <label class="check-control check-control--consent"><input type="checkbox" name="consent" value="yes" required><span class="check-control__box" aria-hidden="true"></span><span>Согласен на обработку данных для ответа на запрос.</span></label>
+        <div class="contact-form__footer"><p class="form-message" id="contact-form-status" role="status" aria-live="polite"></p><button class="button button--primary" type="submit"><span class="button__label">Отправить данные</span><span class="button__loader" aria-hidden="true"></span></button></div>
+      </form>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <noscript><div class="noscript-message">Для работы гостевого доступа и интерактивных элементов необходимо включить JavaScript.</div></noscript>
+</body>
+</html>
