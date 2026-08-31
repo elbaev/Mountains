@@ -53,6 +53,24 @@ jobs:
           git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
           git push --force origin gh-pages
 
+      - name: Verify public CDN response
+        shell: bash
+        run: |
+          set -euo pipefail
+          SITE_ROOT="https://raw.githack.com/${GITHUB_REPOSITORY}/gh-pages"
+          for attempt in {1..12}; do
+            if html="$(curl -fsSL --connect-timeout 10 --max-time 30 "${SITE_ROOT}/index.html")" \
+              && grep -Fq '<title>ALÆNIA' <<<"${html}" \
+              && curl -fsSL --connect-timeout 10 --max-time 30 "${SITE_ROOT}/styles.css" | grep -Fq ':root' \
+              && curl -fsSL --connect-timeout 10 --max-time 30 "${SITE_ROOT}/script.js" | grep -Fq 'ACCESS_HASH'; then
+              echo "Verified ${SITE_ROOT}/index.html"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "Public CDN verification failed" >&2
+          exit 1
+
       - name: Attempt to enable GitHub Pages from gh-pages
         continue-on-error: true
         env:
