@@ -59,10 +59,12 @@ jobs:
           set -euo pipefail
           SITE_ROOT="https://raw.githack.com/${GITHUB_REPOSITORY}/gh-pages"
           for attempt in {1..12}; do
-            if html="$(curl -fsSL --connect-timeout 10 --max-time 30 "${SITE_ROOT}/index.html")" \
-              && grep -Fq '<title>ALÆNIA' <<<"${html}" \
-              && curl -fsSL --connect-timeout 10 --max-time 30 "${SITE_ROOT}/styles.css" | grep -Fq ':root' \
-              && curl -fsSL --connect-timeout 10 --max-time 30 "${SITE_ROOT}/script.js" | grep -Fq 'ACCESS_HASH'; then
+            if curl -fsSL --connect-timeout 10 --max-time 30 "${SITE_ROOT}/index.html" -o /tmp/alaenia-index.html \
+              && curl -fsSL --connect-timeout 10 --max-time 30 "${SITE_ROOT}/styles.css" -o /tmp/alaenia-styles.css \
+              && curl -fsSL --connect-timeout 10 --max-time 30 "${SITE_ROOT}/script.js" -o /tmp/alaenia-script.js \
+              && grep -Fq '<title>ALÆNIA' /tmp/alaenia-index.html \
+              && grep -Fq ':root' /tmp/alaenia-styles.css \
+              && grep -Fq 'ACCESS_HASH' /tmp/alaenia-script.js; then
               echo "Verified ${SITE_ROOT}/index.html"
               exit 0
             fi
